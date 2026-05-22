@@ -1,65 +1,45 @@
-import Image from "next/image";
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div style={{ fontFamily: 'sans-serif', margin: 0, padding: 0 }}>
+      
+      {/* 1. 상단 메뉴바 (가로 정렬) */}
+      <header style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        padding: '20px 50px', 
+        borderBottom: '1px solid #eaeaea' 
+      }}>
+        
+        {/* 왼쪽 로고 영역 */}
+        <div style={{ fontSize: '24px', fontWeight: 'bold', letterSpacing: '-1px' }}>
+          <Link href="/" style={{ color: '#000', textDecoration: 'none' }}>
+            북메타노이아
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        {/* 오른쪽 카테고리 메뉴 영역 */}
+        <nav style={{ display: 'flex', gap: '40px', fontSize: '16px', fontWeight: '500' }}>
+          <Link href="/about" style={{ color: '#333', textDecoration: 'none' }}>출판사 소개</Link>
+          <Link href="/books" style={{ color: '#333', textDecoration: 'none' }}>책 소개</Link>
+          <Link href="/contents/youtube" style={{ color: '#333', textDecoration: 'none' }}>콘텐츠</Link>
+          <Link href="/proposal" style={{ color: '#333', textDecoration: 'none' }}>제안 및 문의</Link>
+        </nav>
+
+      </header>
+
+      {/* 2. 메인 중앙 콘텐츠 영역 */}
+      <main style={{ padding: '100px 20px', textAlign: 'center' }}>
+        <h1 style={{ fontSize: '42px', fontWeight: 'bold', marginBottom: '20px' }}>
+          생각의 전환과 혁신
+        </h1>
+        <p style={{ fontSize: '20px', color: '#666' }}>
+          북메타노이아 출판사에 오신 것을 환영합니다.
+        </p>
       </main>
+
     </div>
   );
 }
