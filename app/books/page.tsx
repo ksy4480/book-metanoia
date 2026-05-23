@@ -1,81 +1,55 @@
-import Image from "next/image";
-import Link from "next/link";
-import { getBooks, isBookFilled } from "./books";
+import Link from 'next/link';
 
 export default function BooksPage() {
-  const books = getBooks();
+  // 대표님의 진짜 책 12권 데이터입니다!
+  const booksData = [
+    { id: "1", title: "마이스터 에크하르트의 중세 고지 독일어 작품집 4-1,2", author: "마이스터 에크하르트 지음, 이부현 옮김", imageUrl: "/book1.jpg" },
+    { id: "2", title: "육조단경", author: "법해 지음, 권서용 외 옮김", imageUrl: "/book2.jpg" },
+    { id: "3", title: "철학으로서 불교 입문", author: "다케무라 마키오 지음, 이태승 외 옮김", imageUrl: "/book3.jpg" },
+    { id: "4", title: "마이스터 에크하르트의 중세 고지 독일어 작품집 3", author: "마이스터 에크하르트 지음, 이부현 옮김", imageUrl: "/book4.jpg" },
+    { id: "5", title: "은의 귀환", author: "황석현 지음", imageUrl: "/book5.jpg" },
+    { id: "6", title: "은빛 이야기", author: "양병호 지음", imageUrl: "/book6.jpg" },
+    { id: "7", title: "6월의 첫 눈", author: "최병식 지음", imageUrl: "/book7.jpg" },
+    { id: "8", title: "마이스터 에크하르트의 중세 고지 독일어 작품집 2", author: "마이스터 에크하르트 지음, 이부현 옮김", imageUrl: "/book8.jpg" },
+    { id: "9", title: "스며들 듯 스쳐 지나갈지라도", author: "정귀숙 지음", imageUrl: "/book9.jpg" },
+    { id: "10", title: "스스로 건너다", author: "권서용 지음", imageUrl: "/book10.jpg" },
+    { id: "11", title: "마이스터 에크하르트의 중세 고지 독일어 작품집 5", author: "마이스터 에크하르트 지음, 이부현 옮김", imageUrl: "/book11.jpg" },
+    { id: "12", title: "M.에크하르트의 중세 고지 독일어 작품집 1", author: "마이스터 에크하르트 지음, 이부현 옮김", imageUrl: "/book12.jpg" },
+  ];
 
   return (
-    <main className="min-h-screen bg-neutral-50 px-6 py-16 text-neutral-900">
-      <section className="mx-auto max-w-6xl">
-        <div className="mb-12">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500">
-            Book Metanoia
-          </p>
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            책 소개
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
-            북메타노이아의 도서를 소개합니다. 표지, 제목, 저자, 번역가,
-            책소개는 n8n 입력 폼을 통해 채워 넣을 수 있습니다.
-          </p>
-        </div>
+    <main style={{ padding: '80px 5%', width: '100%', boxSizing: 'border-box', fontFamily: 'sans-serif' }}>
+      <h1 style={{ fontSize: '36px', fontWeight: 'bold', marginBottom: '50px', textAlign: 'center' }}>
+        책 소개
+      </h1>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {books.map((book) => {
-            const filled = isBookFilled(book);
-            const title = book.title || `도서 ${book.id}`;
-
-            return (
-              <Link
-                key={book.id}
-                href={`/books/${book.id}`}
-                className="group rounded-3xl bg-white p-4 shadow-sm ring-1 ring-neutral-200 transition hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-neutral-100">
-                  {book.coverImage ? (
-                    <Image
-                      src={book.coverImage}
-                      alt={`${title} 표지`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center border border-dashed border-neutral-300 text-center text-sm text-neutral-400">
-                      <span>
-                        책 표지
-                        <br />
-                        입력 대기
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-4">
-                  <span
-                    className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium ${
-                      filled
-                        ? "bg-emerald-50 text-emerald-700"
-                        : "bg-neutral-100 text-neutral-500"
-                    }`}
-                  >
-                    {filled ? "등록 완료" : "입력 대기"}
-                  </span>
-
-                  <h2 className="mt-3 text-lg font-semibold text-neutral-900">
-                    {title}
-                  </h2>
-
-                  <p className="mt-1 text-sm text-neutral-500">
-                    {book.author || "저자 정보 대기 중"}
-                  </p>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+        gap: '40px'
+      }}>
+        {booksData.map((book) => (
+          <Link href={`/books/${book.id}`} key={book.id} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div style={{
+              borderRadius: '12px',
+              overflow: 'hidden', 
+              aspectRatio: '1 / 1.4', 
+              boxShadow: '0 8px 16px rgba(0,0,0,0.06)',
+              marginBottom: '20px',
+              backgroundColor: '#f5f5f5' 
+            }}>
+              <img src={book.imageUrl} alt={book.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+            
+            <h3 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '8px', wordBreak: 'keep-all' }}>
+              {book.title}
+            </h3>
+            <p style={{ fontSize: '15px', color: '#888' }}>
+              {book.author}
+            </p>
+          </Link>
+        ))}
+      </div>
     </main>
   );
 }
