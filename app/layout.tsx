@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: '북메타노이아',
+  title: '도서출판 메타노이아',
   description: '생각의 전환과 혁신을 이끄는 독립 출판사입니다.',
 }
 
